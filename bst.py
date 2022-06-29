@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon May 30 22:43:18 2022
-@author: Asus
+@author: Kunal
 @Description: Binary Search Tree
 """
 
