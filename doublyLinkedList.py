@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon May 30 15:52:56 2022
-@author: Asus
+@author: Kunal
 @Description: doubly linked list
 """
 
