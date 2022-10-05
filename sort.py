@@ -78,15 +78,12 @@ class Sort():
         arr = self.arr
         n = len(arr)
         for i in range(n):
-            mn = arr[i]
-            ix = i
+            
             for j in range(i+1,n):
-                if(arr[j]<mn):
-                    mn = arr[j]
-                    ix = j
-            tmp = arr[i]
-            arr[i] = mn
-            arr[ix] = tmp
+                if(arr[j]<arr[i]):
+                    tmp = arr[i]
+                    arr[i] = arr[j]
+                    arr[j] = tmp
             
         return(arr)
     
@@ -99,12 +96,13 @@ class Sort():
         while(count>0):
             count = 0
             for i in range(n):
-                tmp = arr[i]
-                for j in range(i,-1,-1):
-                    if(arr[j]>arr[i]):
-                        arr[i] = arr[j]
-                        arr[j] = tmp
-                        count += 1
+                key = arr[i]
+                j = i-1
+                while j >= 0 and key < arr[j] :
+                    arr[j + 1] = arr[j]
+                    j -= 1
+                
+                arr[j + 1] = key
     
         return(arr)   
     
