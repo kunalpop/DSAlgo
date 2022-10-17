@@ -4,7 +4,6 @@ Created on Mon May 30 15:52:56 2022
 @author: Kunal
 @Description: doubly linked list
 """
-
 class Node:
     def __init__(self,value=None):
         self.value = value
@@ -17,35 +16,24 @@ class DLinkedList():
         self.tail= None
         
     def create_ll(self,arr):
-        self.head = Node()
-        self.tail = Node()
+        self.head = Node(arr[0])
         
         prev = self.head
-        succ = self.tail
-        
-        i = 0
-        
-        for v in arr: 
-            if(i==0):
-                node = Node(v)
-                prev.next = node
-                node.prev = None
-                prev = node
-            elif(i==len(arr)-1):
-                node = Node(v)
-                prev.next = node
-                node.prev = prev
-                self.tail.prev = node
-            else:
-                node = Node(v)
-                prev.next = node
-                node.prev = prev
-                prev = node
-            i += 1
+                
+        for i in range(1,len(arr)): 
+            
+            node = Node(arr[i])
+            prev.next = node
+            node.prev = prev
+            
+            prev = node
+            
+        self.tail = prev
+            
             
     def print_ll(self):
         
-        node = self.head.next
+        node = self.head
         
         ll = []
         
@@ -55,26 +43,25 @@ class DLinkedList():
             
         print(ll)
 
-        #node = self.tail.prev
+    def print_reverse_ll(self):
+        
+        node = self.tail
             
-        #ll = []
+        ll = []
         
-        #while(node != None):
-        #    ll.append(node.value)
-        #    node = node.prev
+        while(node != None):
+            ll.append(node.value)
+            node = node.prev
         
-        #print(ll)
+        print(ll)
         
         
     def insert_ll(self,position,value):
         
         node = self.head
         
-        i=0
-        while(i<position):
-            i += 1
-            prev = node
-            node = node.next
+        i=1
+        while(i<=position):
             
             if(i==position):
                 newNode = Node(value)
@@ -82,54 +69,57 @@ class DLinkedList():
                 newNode.next = node
                 node.prev = newNode
                 newNode.prev = prev
-                break
+                i += 1
+            else:
+                i += 1
+                prev = node
+                node = node.next
 
     def delete_ll(self,position):
         
         node = self.head
         
-        i=0
-        while(i<position):
-            i += 1
-            prev = node
-            node = node.next
-            
+        i=1
+        while(i<=position):
             if(i==position):
                 prev.next = node.next
                 node = None
-                break
+                i += 1
+            else:
+                i += 1
+                prev = node
+                node = node.next 
                 
     def update_ll(self,position,value):
         
         node = self.head
         
-        i=0
-        while(i<position):
-            i += 1
-            prev = node
-            node = node.next
-            
+        i=1
+        while(i<=position):
             if(i==position):
                 node.value = value
-                break
+                i += 1
+            else:
+                i += 1
+                prev = node
+                node = node.next
             
     def reverse_ll(self):
         
-        node = self.head.next
+        node = self.head
         prev = None
-        self.tail.prev = node
         
         while(node != None):
             succ = node.next
             
             node.next = prev
             node.prev = succ
-                        
+            
             prev = node
             node = succ
         
-        self.head.next = prev
-        
+        self.tail = self.head
+        self.head = prev
         return()
         
 
@@ -160,6 +150,6 @@ def main():
     dll.print_ll()
     
     
-    
 if __name__ == "__main__":
     main()
+    
