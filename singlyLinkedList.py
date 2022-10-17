@@ -39,22 +39,22 @@ class SLinkedList:
             node = node.next
         
         print(ll)
-        
+                              
     def insert_ll(self,position,value):
         
         node = self.headNode
         
         i=1
-        while(i<position):
-            i += 1
-            prev = node
-            node = node.next
-            
+        while(i<=position):            
             if(i==position):
                 newNode = Node(value)
                 prev.next = newNode
                 newNode.next = node
-                break
+                i += 1
+            else:
+                i += 1
+                prev = node
+                node = node.next   
                 
     def delete_ll(self,position):
         
@@ -70,22 +70,7 @@ class SLinkedList:
                 i += 1
                 prev = node
                 node = node.next
-                         
-    def insert_ll(self,position,value):
-        
-        node = self.headNode
-        
-        i=1
-        while(i<=position):            
-            if(i==position):
-                newNode = Node(value)
-                prev.next = newNode
-                newNode.next = node
-                i += 1
-            else:
-                i += 1
-                prev = node
-                node = node.next
+
                 
     def update_ll(self,position,value):
         
