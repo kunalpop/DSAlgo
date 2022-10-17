@@ -16,20 +16,21 @@ class SLinkedList:
         
        
     def create_ll(self,arr):
-        self.headNode = Node()
+        self.headNode = Node(arr[0])
         prev = self.headNode
                 
-        for i in range(0,len(arr)):
+        for i in range(1,len(arr)):
             
             node = Node(arr[i])
-            prev.next = node
-            prev = node
+            curr = node
+            prev.next = curr
+            prev = curr
             
         return(self.headNode)
     
     def print_ll(self):
         
-        node = self.headNode.next
+        node = self.headNode
         
         ll = []
         
@@ -43,7 +44,7 @@ class SLinkedList:
         
         node = self.headNode
         
-        i=0
+        i=1
         while(i<position):
             i += 1
             prev = node
@@ -59,50 +60,52 @@ class SLinkedList:
         
         node = self.headNode
         
-        i=0
-        while(i<position):
-            i += 1
-            prev = node
-            node = node.next
-            
+        i=1
+        while(i<=position):            
             if(i==position):
                 prev.next = node.next
                 node = None
-                break
+                i += 1
+            else:
+                i += 1
+                prev = node
+                node = node.next
                          
     def insert_ll(self,position,value):
         
         node = self.headNode
         
-        i=0
-        while(i<position):
-            i += 1
-            prev = node
-            node = node.next
-            
+        i=1
+        while(i<=position):            
             if(i==position):
                 newNode = Node(value)
                 prev.next = newNode
                 newNode.next = node
+                i += 1
+            else:
+                i += 1
+                prev = node
+                node = node.next
                 
     def update_ll(self,position,value):
         
         node = self.headNode
         
-        i=0
-        while(i<position):
-            i += 1
-            prev = node
-            node = node.next
-            
+        i=1
+        while(i<=position):
             if(i==position):
                 node.value = value
-                break
+                i += 1
+            else:
+                i += 1
+                prev = node
+                node = node.next
                 
     def reverse_ll(self):
         
-        node = self.headNode.next
+        node = self.headNode
         prev = None
+        
         while(node != None):
 
             suc = node.next
@@ -110,8 +113,8 @@ class SLinkedList:
                         
             prev = node
             node = suc
-        
-        self.headNode.next = prev
+                
+        self.headNode = prev
         
         return()
         
